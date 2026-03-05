@@ -1,18 +1,42 @@
-#basic code I have used 
+import numpy as np
 import pandas as pd
 
-# Create a simple churn dataset
-data = {
-    "Age": [25,40,31,22,55,30,28,45,33,27,50,26,34,29,48,32,23,37,41,36],
-    "TotalOrders": [10,2,6,1,3,8,4,9,2,5,1,7,3,6,2,9,1,4,8,5],
-    "LastPurchaseDaysAgo": [5,60,18,90,45,12,35,7,70,20,85,10,40,22,65,14,95,30,9,25],
-    "Churn": [0,1,0,1,1,0,1,0,1,0,1,0,1,0,1,0,1,1,0,0]
-}
+np.random.seed(42)
 
-df = pd.DataFrame(data)
+# Number of customers
+n = 150
 
-# Save dataset as CSV
+# Generate features
+age = np.random.randint(18, 70, n)
+total_orders = np.random.randint(0, 20, n)
+last_purchase_days = np.random.randint(1, 180, n)
+browsing_time = np.random.uniform(1, 20, n)  # minutes per session
+cart_abandon = np.random.randint(0, 10, n)
+sessions_per_month = np.random.randint(1, 40, n)
+
+# Create churn probability based on behavior (realistic logic)
+churn_prob = (
+    0.3 * (last_purchase_days / 180) +     # long time since last purchase → more churn
+    0.2 * (cart_abandon / 10) +            # more abandoned carts → more churn
+    0.1 * (1 - total_orders / 20) +        # fewer orders → more churn
+    0.1 * (1 - sessions_per_month / 40)    # fewer sessions → more churn
+)
+
+# Convert probability to binary churn (0/1)
+churn = (churn_prob > np.random.rand(n)).astype(int)
+
+# Create DataFrame
+df = pd.DataFrame({
+    "Age": age,
+    "TotalOrders": total_orders,
+    "LastPurchaseDaysAgo": last_purchase_days,
+    "BrowsingTime": browsing_time.round(2),
+    "CartAbandonCount": cart_abandon,
+    "SessionsPerMonth": sessions_per_month,
+    "Churn": churn
+})
 df.to_csv("churn_data.csv", index=False)
+print("Dataset saved as ecommerce_churn_data.csv")
 
-print("Dataset created successfully!")
-print(df)
+print(df.head())
+print("\nDataset created with shape:", df.shape)

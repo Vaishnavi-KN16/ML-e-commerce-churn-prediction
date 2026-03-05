@@ -38,7 +38,7 @@ features the churn model will have
 2. by using code ( python )
 both the methods will be done by me now 
 churn_data_manually.csv has the manually added one 
-generate_data.py has the python code whic created churn_data.csv
+generate_data.py has the python code which created churn_data.csv
 
 -> the main part has arrived now 
 we have used logistic regression ML algorithm here to train the model 
@@ -118,4 +118,40 @@ Do we need new features?
 Is model underfitting or overfitting?
 
 Do we need a different algorithm?
+now updating the data set with more new features 
+we use the same python code to generate a data set 
+after the evaluation of model we get to know accuracy of the model which would help us in improving the model by scaling the model 
+->how do we scale the model and why do we scale the model 
+okay now some model training algorithms require scaling because they usually consider distance so scaling factor between some raw values will help 
+will help model to consider even the small values 
 
+LastPurchaseDaysAgo” = 160
+
+“BrowsingTime” = 12
+
+The model thinks “160” is more important, not because the feature is meaningful — just because the number is bigger
+mean = 0
+
+standard deviation = 1
+z=(x-μ​)/σ
+so  this how we do scaling in such algorithms 
+Age becomes something like: -0.8, 0.3, 1.1
+
+LastPurchaseDaysAgo becomes: 1.8, -0.4, -1.1
+
+BrowsingTime: -0.2, 0.7, -1.4
+-> my model performed very bad and has very less acuuracy and a bad auc score which is even lesser than the random guessing 
+so why this happened and how do we solve it ? 
+this happened because of class imbalance 
+now what is class imbalance 
+imagine we have 100 customers in total while 80 of them are non churn customers and 20 of them are churn 
+the model learns from the highest class that is 80 customers so here the model becomes baised this is called class imbalance since we consider churn and not churn as class 
+
+now we use smote technique to solve this 
+what is smote ? 
+Synthetic Minority Over-sampling Technique
+It creates new fake examples of class 1 (churners) based on real ones.
+Not duplicates.
+Not random numbers.
+
+But realistic synthetic samples by looking at nearest neighbors.
