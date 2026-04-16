@@ -2,6 +2,9 @@
 
 An end-to-end Machine Learning pipeline that predicts customer churn with **98% accuracy** and provides model transparency using **SHAP** values.
 
+## ⚖️ License
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
 ## 🚀 Features
 * **Predictive Modeling:** Random Forest Classifier trained on e-commerce behavior data.
 * **Explainable AI (XAI):** Integrated SHAP summary plots to show why customers leave.
