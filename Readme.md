@@ -20,21 +20,4 @@ An end-to-end Machine Learning pipeline that predicts customer churn with **98% 
 
     pip install -r requirements.txt
     streamlit run app.py
-### 3. The License
-For a student/portfolio project, the **MIT License** is the industry standard. It’s "short and sweet"—it says anyone can use your code, but they can't hold you liable if something goes wrong.
 
-Create a file named `LICENSE` and paste the MIT template:
-
-> **MIT License**
-> 
-> Copyright (c) 2026 Vaishnavi KN
-> 
-> Permission is hereby granted, free of charge, to any person obtaining a copy of this software... (and so on).
-
----
-
-### 4. The Final Polish: `requirements.txt`
-Docker uses this to know what to install. Run this command in your terminal to generate it automatically:
-
-```powershell
-pip freeze > requirements.txt
