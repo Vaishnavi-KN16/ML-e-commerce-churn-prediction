@@ -1,0 +1,7 @@
+.venv/
+__pycache__/
+*.csv
+*.xlsx
+test.ipynb
+train_model.py
+.git/
